@@ -1,7 +1,7 @@
 // NexMine Mining Timer Logic
 let miningInterval;
 let timeLeft = 24 * 3600; 
-const REWARD_RATE_PER_SEC = 0.5 / 3600; // 0.5 NXP per hour
+const REWARD_RATE_PER_SEC = 1.0 / 3600; // 1.0 NXP per hour
 
 function startMining() {
     const btn = document.getElementById('start-mining-btn');
