@@ -1,0 +1,128 @@
+import 'package:flutter/material.dart';
+
+// --- Splash Screen ---
+class SplashScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color(0xFF0A0A0A),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.network('https://storage.googleapis.com/generativeai-downloads/images/input_file_1.png', width: 120),
+            SizedBox(height: 20),
+            Text('NexMine', style: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold)),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// --- Signup Screen ---
+class SignupScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Sign Up')),
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+            TextField(decoration: InputDecoration(labelText: 'Email')),
+            TextField(decoration: InputDecoration(labelText: 'Mobile Number')),
+            TextField(decoration: InputDecoration(labelText: 'Password', obscureText: true)),
+            TextField(decoration: InputDecoration(labelText: 'Referral Code (Optional)')),
+            SizedBox(height: 20),
+            ElevatedButton(onPressed: () {}, child: Text('Sign Up')),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// --- Login Screen ---
+class LoginScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Login', style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+            TextField(decoration: InputDecoration(labelText: 'Email')),
+            TextField(decoration: InputDecoration(labelText: 'Password', obscureText: true)),
+            TextButton(
+              onPressed: () {
+                // Redirect to Telegram Support
+              },
+              child: Text('Forgot Password? Contact Support'),
+            ),
+            ElevatedButton(onPressed: () {}, child: Text('Login')),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// --- Dashboard Screen ---
+class DashboardScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.bolt), label: 'Mining'),
+          BottomNavigationBarItem(icon: Icon(Icons.wallet), label: 'Wallet'),
+        ],
+      ),
+      body: Column(
+        children: [
+          _buildBalanceCard(),
+          _buildMiningStatus(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBalanceCard() {
+    return Container(
+      padding: EdgeInsets.all(20),
+      margin: EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.amber,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(
+        children: [
+          Text('Balance', style: TextStyle(fontSize: 16)),
+          Text('1,250.50 NXP', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMiningStatus() {
+    return Card(
+      margin: EdgeInsets.all(20),
+      child: Padding(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+            Text('Mining Speed: 0.5 NXP/hr'),
+            SizedBox(height: 10),
+            Text('Timer: 23:45:12', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            SizedBox(height: 20),
+            ElevatedButton(onPressed: () {}, child: Text('Start Mining')),
+          ],
+        ),
+      ),
+    );
+  }
+}

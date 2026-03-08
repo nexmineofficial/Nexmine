@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | NexMine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white font-sans min-h-screen flex items-center justify-center px-6">
+    <div class="max-w-md w-full space-y-8 bg-zinc-900 p-10 rounded-3xl border border-white/5">
+        <div class="text-center">
+            <img src="https://storage.googleapis.com/generativeai-downloads/images/input_file_1.png" alt="Logo" class="w-16 h-16 mx-auto mb-6">
+            <h2 class="text-3xl font-black mb-2 tracking-tighter">Login</h2>
+            <p class="text-white/40 text-sm">Welcome back to NexMine</p>
+        </div>
+        <form class="space-y-6">
+            <div>
+                <label class="block text-xs font-bold text-white/30 uppercase tracking-widest mb-2">Email</label>
+                <input type="email" class="w-full bg-black border border-white/10 p-4 rounded-xl focus:border-amber-500 outline-none transition-all" placeholder="Enter your email">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-white/30 uppercase tracking-widest mb-2">Password</label>
+                <input type="password" class="w-full bg-black border border-white/10 p-4 rounded-xl focus:border-amber-500 outline-none transition-all" placeholder="Enter your password">
+            </div>
+            <div class="flex justify-between items-center text-xs">
+                <a href="#" onclick="forgotPassword()" class="text-amber-500 font-bold hover:underline">Forgot Password?</a>
+                <a href="signup.html" class="text-white/40 hover:text-white">Create Account</a>
+            </div>
+            <button type="submit" class="w-full py-4 bg-amber-500 text-black font-black rounded-xl tracking-widest hover:bg-amber-400 transition-all shadow-lg shadow-amber-500/20 uppercase">Login</button>
+        </form>
+    </div>
+
+    <script>
+        function forgotPassword() {
+            const message = "For password recovery please contact NexMine support on Telegram. Our support team will respond within 24 hours.";
+            alert(message);
+            window.location.href = "https://t.me/NexMineSupport"; // Example Telegram link
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexMine | Social Mining Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #000; color: #fff; }
+        .amber-glow { filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.3)); }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center p-1 border border-amber-500/20 shadow-lg shadow-amber-500/10">
+                    <svg viewBox="0 0 100 100" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#FBDF7E" />
+                                <stop offset="50%" stop-color="#F59E0B" />
+                                <stop offset="100%" stop-color="#B45309" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="50" cy="50" r="48" fill="url(#goldGradient)" stroke="#78350F" stroke-width="1" />
+                        <path d="M30 70V30L50 50L70 30V70" stroke="black" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M50 50L75 75M50 50L25 75" stroke="black" stroke-width="8" stroke-linecap="round" />
+                    </svg>
+                </div>
+                <span class="text-2xl font-bold tracking-tight">NexMine</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#home" class="text-sm font-medium text-white/70 hover:text-white">Home</a>
+                <a href="#how-it-works" class="text-sm font-medium text-white/70 hover:text-white">How it Works</a>
+                <a href="#rewards" class="text-sm font-medium text-white/70 hover:text-white">Rewards</a>
+                <button class="px-5 py-2.5 bg-amber-500 text-black text-sm font-bold rounded-full hover:bg-amber-400 transition-all">Launch App</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="relative pt-48 pb-24 overflow-hidden min-h-screen flex items-center">
+        <div class="absolute inset-0 -z-10">
+            <div class="absolute inset-0" style="background: radial-gradient(circle at 50% 50%, #1e1b4b, black);"></div>
+            <div class="absolute inset-0 opacity-30">
+                <img src="https://storage.googleapis.com/generativeai-downloads/images/input_file_0.png" alt="Background" class="w-full h-full object-cover mix-blend-overlay opacity-50">
+            </div>
+            <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 w-full text-center">
+            <div class="max-w-3xl mx-auto">
+                <div class="flex justify-center mb-12">
+                    <div class="relative w-48 h-48">
+                        <div class="absolute inset-0 bg-amber-500/20 blur-[100px] rounded-full"></div>
+                        <img src="https://storage.googleapis.com/generativeai-downloads/images/input_file_1.png" alt="NexMine Logo" class="w-full h-full relative z-10 drop-shadow-[0_0_30px_rgba(245,158,11,0.6)] object-contain">
+                    </div>
+                </div>
+                <h1 class="text-6xl md:text-8xl font-black mb-4 leading-tight tracking-tighter">NexMine Social Mining</h1>
+                <h2 class="text-2xl md:text-3xl font-bold text-white/90 mb-8">Mine digital rewards daily.</h2>
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <button class="w-full sm:w-auto px-10 py-4 bg-amber-500 text-black font-black rounded-2xl hover:bg-amber-400 transition-all shadow-xl shadow-amber-500/20 uppercase tracking-widest">Start Mining</button>
+                    <button class="w-full sm:w-auto px-10 py-4 bg-white/5 text-white font-bold rounded-2xl border border-white/10 hover:bg-white/10 transition-all">Join Community</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- How it Works -->
+    <section id="how-it-works" class="py-24 bg-zinc-950">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">How it Works</h2>
+                <p class="text-white/50">Three simple steps to start earning.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-zinc-900 p-8 rounded-3xl border border-white/5">
+                    <div class="text-amber-500 text-4xl font-black mb-4">01</div>
+                    <h3 class="text-xl font-bold mb-2">Create Account</h3>
+                    <p class="text-white/50">Sign up with email and mobile number to get 100 NXP bonus.</p>
+                </div>
+                <div class="bg-zinc-900 p-8 rounded-3xl border border-white/5">
+                    <div class="text-amber-500 text-4xl font-black mb-4">02</div>
+                    <h3 class="text-xl font-bold mb-2">Start Daily Mining</h3>
+                    <p class="text-white/50">Activate your session every 24 hours to earn rewards.</p>
+                </div>
+                <div class="bg-zinc-900 p-8 rounded-3xl border border-white/5">
+                    <div class="text-amber-500 text-4xl font-black mb-4">03</div>
+                    <h3 class="text-xl font-bold mb-2">Earn Rewards</h3>
+                    <p class="text-white/50">Watch your balance grow and build your mining team.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mining Reward Table -->
+    <section id="rewards" class="py-24 bg-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">Mining Reward Table</h2>
+                    <p class="text-white/50 mb-8">Rewards are distributed based on community size.</p>
+                    <div class="space-y-4">
+                        <div class="flex justify-between p-4 bg-zinc-900 rounded-xl border border-white/5">
+                            <span>0 – 5,000 users</span>
+                            <span class="text-amber-500 font-bold">1 NXP / hr</span>
+                        </div>
+                        <div class="flex justify-between p-4 bg-zinc-900 rounded-xl border border-white/5">
+                            <span>5,000 – 10,000 users</span>
+                            <span class="text-amber-500 font-bold">0.5 NXP / hr</span>
+                        </div>
+                        <div class="flex justify-between p-4 bg-zinc-900 rounded-xl border border-white/5">
+                            <span>10,000 – 20,000 users</span>
+                            <span class="text-amber-500 font-bold">0.3 NXP / hr</span>
+                        </div>
+                        <div class="flex justify-between p-4 bg-zinc-900 rounded-xl border border-white/5">
+                            <span>20,000 – 50,000 users</span>
+                            <span class="text-amber-500 font-bold">0.2 NXP / hr</span>
+                        </div>
+                        <div class="flex justify-between p-4 bg-zinc-900 rounded-xl border border-white/5">
+                            <span>50,000 – 100,000 users</span>
+                            <span class="text-amber-500 font-bold">0.1 NXP / hr</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-zinc-900 p-8 rounded-3xl border border-white/5">
+                    <h2 class="text-3xl font-bold mb-6">Tasks Rewards</h2>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center p-4 bg-black/50 rounded-xl">
+                            <span>Telegram Join</span>
+                            <span class="bg-amber-500 text-black px-3 py-1 rounded-lg font-bold">50 NXP</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 bg-black/50 rounded-xl">
+                            <span>X Follow + Retweet</span>
+                            <span class="bg-amber-500 text-black px-3 py-1 rounded-lg font-bold">50 NXP</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 bg-black/50 rounded-xl">
+                            <span>YouTube Subscribe</span>
+                            <span class="bg-amber-500 text-black px-3 py-1 rounded-lg font-bold">50 NXP</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 bg-black/50 rounded-xl">
+                            <span>Instagram Follow</span>
+                            <span class="bg-amber-500 text-black px-3 py-1 rounded-lg font-bold">50 NXP</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 bg-black/50 rounded-xl">
+                            <span>Facebook Follow</span>
+                            <span class="bg-amber-500 text-black px-3 py-1 rounded-lg font-bold">50 NXP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Referral Program -->
+    <section class="py-24 bg-zinc-950">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-6">Referral Program</h2>
+            <p class="text-white/50 mb-12 max-w-2xl mx-auto">Build your team and earn multi-level bonuses. Signup reward: 100 NXP.</p>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                <div class="bg-zinc-900 p-6 rounded-2xl border border-white/5">
+                    <div class="text-amber-500 font-black text-2xl">10%</div>
+                    <div class="text-sm text-white/40">Level 1</div>
+                </div>
+                <div class="bg-zinc-900 p-6 rounded-2xl border border-white/5">
+                    <div class="text-amber-500 font-black text-2xl">5%</div>
+                    <div class="text-sm text-white/40">Level 2</div>
+                </div>
+                <div class="bg-zinc-900 p-6 rounded-2xl border border-white/5">
+                    <div class="text-amber-500 font-black text-2xl">3%</div>
+                    <div class="text-sm text-white/40">Level 3</div>
+                </div>
+                <div class="bg-zinc-900 p-6 rounded-2xl border border-white/5">
+                    <div class="text-amber-500 font-black text-2xl">2%</div>
+                    <div class="text-sm text-white/40">Level 4</div>
+                </div>
+                <div class="bg-zinc-900 p-6 rounded-2xl border border-white/5">
+                    <div class="text-amber-500 font-black text-2xl">1%</div>
+                    <div class="text-sm text-white/40">Level 5</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 border-t border-white/5 text-center">
+        <div class="flex items-center justify-center gap-3 mb-6">
+            <div class="w-10 h-10 bg-amber-500/10 rounded-lg flex items-center justify-center p-1 border border-amber-500/20">
+                <img src="https://storage.googleapis.com/generativeai-downloads/images/input_file_1.png" alt="NexMine Logo" class="w-full h-full object-contain">
+            </div>
+            <span class="text-xl font-bold text-white">NexMine</span>
+        </div>
+        <p class="text-white/40 text-sm">© 2026 NexMine Social Mining Platform. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
