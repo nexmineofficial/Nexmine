@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | NexMine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        #balance { transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="bg-black text-white font-sans min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="p-6 flex justify-between items-center border-b border-white/5 bg-black/50 backdrop-blur-md sticky top-0 z-50">
+        <div class="flex items-center gap-2">
+            <!-- SVG Logo (Reliable) -->
+            <svg class="w-10 h-10 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <span class="font-black tracking-tighter text-xl bg-gradient-to-r from-amber-200 to-amber-500 bg-clip-text text-transparent">NexMine</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="text-right hidden sm:block">
+                <p class="text-[10px] uppercase font-bold text-white/30 tracking-widest">Account</p>
+                <p id="user-email" class="text-xs text-white/70">Loading...</p>
+            </div>
+            <button onclick="logout()" class="text-[10px] font-bold uppercase tracking-widest bg-white/5 hover:bg-red-500/20 hover:text-red-500 border border-white/10 px-4 py-2 rounded-xl transition-all">
+                Logout
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6 max-w-lg mx-auto w-full space-y-6 pb-24">
+        
+        <!-- Balance Card -->
+        <div class="relative overflow-hidden bg-gradient-to-br from-amber-400 to-orange-600 p-8 rounded-[32px] text-black shadow-2xl shadow-amber-500/20">
+            <!-- Decorative Circle -->
+            <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/20 rounded-full blur-3xl"></div>
+            
+            <p class="text-xs font-black uppercase tracking-widest opacity-70 mb-2">Total Balance</p>
+            <div class="flex items-baseline gap-2">
+                <h2 id="balance" class="text-5xl font-black tracking-tighter">0.00</h2>
+                <span class="font-bold text-sm">NXP</span>
+            </div>
+        </div>
+
+        <!-- Mining Status Card -->
+        <div class="bg-zinc-900 p-8 rounded-[32px] border border-white/5 space-y-6 relative overflow-hidden">
+            <div class="flex justify-between items-center relative z-10">
+                <div>
+                    <p class="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-1">Mining Speed</p>
+                    <div class="flex items-center gap-2">
+                        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <p class="text-lg font-black text-white">1.00 <span class="text-xs text-white/40">NXP/hr</span></p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <p class="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-1">Status</p>
+                    <p id="mining-status" class="text-lg font-black text-white/40 uppercase tracking-tighter italic">Inactive</p>
+                </div>
+            </div>
+
+            <div class="py-4 flex flex-col items-center relative z-10">
+                <div id="timer-display" class="text-5xl font-mono font-black mb-8 text-amber-500 hidden tracking-tighter">24:00:00</div>
+                <button id="start-mining-btn" onclick="startMining()" class="w-full py-6 bg-white text-black font-black rounded-[24px] tracking-[0.2em] hover:bg-amber-500 transition-all shadow-xl active:scale-95 uppercase text-sm">
+                    Start Mining Session
+                </button>
+            </div>
+        </div>
+
+        <!-- Task List -->
+        <div class="space-y-4">
+            <div class="flex justify-between items-center px-2">
+                <h3 class="text-xs font-black uppercase tracking-widest text-white/40">Daily Tasks</h3>
+                <span class="text-[10px] font-bold text-amber-500 bg-amber-500/10 px-2 py-1 rounded-md">New</span>
+            </div>
+            
+            <div class="space-y-3">
+                <!-- Telegram -->
+                <div class="group bg-zinc-900/50 hover:bg-zinc-900 p-4 rounded-2xl border border-white/5 flex justify-between items-center transition-all cursor-pointer">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.52-1.4.51-.46-.01-1.35-.26-2.01-.48-.81-.27-1.45-.42-1.39-.88.03-.24.36-.48.99-.74 3.89-1.69 6.48-2.8 7.78-3.33 3.69-1.5 4.46-1.76 4.96-1.77.11 0 .36.03.52.16.13.11.17.25.19.35.02.1.03.23.01.35z"/></svg>
+                        </div>
+                        <div>
+                            <span class="block text-sm font-black">Telegram Join</span>
+                            <span class="text-[10px] text-white/30 uppercase font-bold">One-time reward</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="block text-amber-500 font-black text-sm">+50.00</span>
+                        <span class="text-[10px] text-white/20 font-bold uppercase">NXP</span>
+                    </div>
+                </div>
+
+                <!-- Instagram -->
+                <div class="group bg-zinc-900/50 hover:bg-zinc-900 p-4 rounded-2xl border border-white/5 flex justify-between items-center transition-all cursor-pointer">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-pink-500/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </div>
+                        <div>
+                            <span class="block text-sm font-black">Follow Instagram</span>
+                            <span class="text-[10px] text-white/30 uppercase font-bold">Daily task</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="block text-amber-500 font-black text-sm">+20.00</span>
+                        <span class="text-[10px] text-white/20 font-bold uppercase">NXP</span>
+                    </div>
+                </div>
+
+                <!-- YouTube -->
+                <div class="group bg-zinc-900/50 hover:bg-zinc-900 p-4 rounded-2xl border border-white/5 flex justify-between items-center transition-all cursor-pointer">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-red-500/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6 text-red-400" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 4-8 4z"/></svg>
+                        </div>
+                        <div>
+                            <span class="block text-sm font-black">Subscribe YouTube</span>
+                            <span class="text-[10px] text-white/30 uppercase font-bold">Bonus reward</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="block text-amber-500 font-black text-sm">+30.00</span>
+                        <span class="text-[10px] text-white/20 font-bold uppercase">NXP</span>
+                    </div>
+                </div>
+
+                <!-- Twitter/X -->
+                <div class="group bg-zinc-900/50 hover:bg-zinc-900 p-4 rounded-2xl border border-white/5 flex justify-between items-center transition-all cursor-pointer">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </div>
+                        <div>
+                            <span class="block text-sm font-black">Follow on X</span>
+                            <span class="text-[10px] text-white/30 uppercase font-bold">Community task</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="block text-amber-500 font-black text-sm">+25.00</span>
+                        <span class="text-[10px] text-white/20 font-bold uppercase">NXP</span>
+                    </div>
+                </div>
+
+                <!-- Facebook -->
+                <div class="group bg-zinc-900/50 hover:bg-zinc-900 p-4 rounded-2xl border border-white/5 flex justify-between items-center transition-all cursor-pointer">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-blue-600/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </div>
+                        <div>
+                            <span class="block text-sm font-black">Like Facebook</span>
+                            <span class="text-[10px] text-white/30 uppercase font-bold">Social task</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="block text-amber-500 font-black text-sm">+15.00</span>
+                        <span class="text-[10px] text-white/20 font-bold uppercase">NXP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script src="js/mining.js"></script>
+</body>
+</html>
