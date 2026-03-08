@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | NexMine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Smooth transition for balance updates */
+        #balance { transition: all 0.3s ease; }
+        .mining-glow { filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.4)); }
+    </style>
+</head>
+<body class="bg-black text-white font-sans min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="p-6 flex justify-between items-center border-b border-white/5 bg-black/50 backdrop-blur-md sticky top-0 z-50">
+        <div class="flex items-center gap-2">
+            <img src="https://storage.googleapis.com/generativeai-downloads/images/input_file_0.png" alt="Logo" class="w-10 h-10">
+            <span class="font-black tracking-tighter text-xl bg-gradient-to-r from-amber-200 to-amber-500 bg-clip-text text-transparent">NexMine</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="text-right hidden sm:block">
+                <p class="text-[10px] uppercase font-bold text-white/30 tracking-widest">Account</p>
+                <p id="user-email" class="text-xs text-white/70">Loading...</p>
+            </div>
+            <button onclick="logout()" class="text-[10px] font-bold uppercase tracking-widest bg-white/5 hover:bg-red-500/20 hover:text-red-500 border border-white/10 px-4 py-2 rounded-xl transition-all">
+                Logout
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6 max-w-lg mx-auto w-full space-y-6">
+        
+        <!-- Balance Card -->
+        <div class="relative overflow-hidden bg-gradient-to-br from-amber-400 to-orange-600 p-8 rounded-[32px] text-black shadow-2xl shadow-amber-500/20">
+            <!-- Decorative Circle -->
+            <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/20 rounded-full blur-3xl"></div>
+            
+            <p class="text-xs font-black uppercase tracking-widest opacity-70 mb-2">Total Balance</p>
+            <div class="flex items-baseline gap-2">
+                <h2 id="balance" class="text-5xl font-black tracking-tighter">0.00</h2>
+                <span class="font-bold text-sm">NXP</span>
+            </div>
+            
+            <div class="mt-6 flex gap-2">
+                <button class="flex-1 bg-black text-white text-[10px] font-black py-3 rounded-2xl uppercase tracking-widest hover:bg-zinc-900 transition-all">Withdraw</button>
+                <button class="flex-1 bg-white/20 text-black text-[10px] font-black py-3 rounded-2xl uppercase tracking-widest hover:bg-white/30 transition-all">History</button>
+            </div>
+        </div>
+
+        <!-- Mining Status Card -->
+        <div class="bg-zinc-900 p-8 rounded-[32px] border border-white/5 space-y-6 relative overflow-hidden">
+            <div class="flex justify-between items-center relative z-10">
+                <div>
+                    <p class="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-1">Mining Speed</p>
+                    <div class="flex items-center gap-2">
+                        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <p class="text-lg font-black text-white">0.50 <span class="text-xs text-white/40">NXP/hr</span></p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <p class="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-1">Status</p>
+                    <p id="mining-status" class="text-lg font-black text-white/40 uppercase tracking-tighter italic">Inactive</p>
+                </div>
+            </div>
+
+            <div class="py-4 flex flex-col items-center relative z-10">
+                <!-- Timer Display -->
+                <div id="timer-display" class="text-5xl font-mono font-black mb-8 text-amber-500 hidden tracking-tighter">24:00:00</div>
+                
+                <!-- Start Button -->
+                <button id="start-mining-btn" onclick="startMining()" class="w-full py-6 bg-white text-black font-black rounded-[24px] tracking-[0.2em] hover:bg-amber-500 transition-all shadow-xl active:scale-95 uppercase text-sm">
+                    Start Mining Session
+                </button>
+            </div>
+            
+            <!-- Background Decoration -->
+            <div class="absolute bottom-0 left-0 w-full h-1 bg-white/5">
+                <div id="progress-bar" class="h-full bg-amber-500 w-0 transition-all duration-1000"></div>
+            </div>
+        </div>
+
+        <!-- Task List -->
+        <div class="space-y-4">
+            <div class="flex justify-between items-center px-2">
+                <h3 class="text-xs font-black uppercase tracking-widest text-white/40">Daily Tasks</h3>
+                <span class="text-[10px] font-bold text-amber-500 bg-amber-500/10 px-2 py-1 rounded-md">New</span>
+            </div>
+            
+            <div class="space-y-3">
+                <!-- Task Item -->
+                <div class="group bg-zinc-900/50 hover:bg-zinc-900 p-4 rounded-2xl border border-white/5 flex justify-between items-center transition-all cursor-pointer">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.52-1.4.51-.46-.01-1.35-.26-2.01-.48-.81-.27-1.45-.42-1.39-.88.03-.24.36-.48.99-.74 3.89-1.69 6.48-2.8 7.78-3.33 3.69-1.5 4.46-1.76 4.96-1.77.11 0 .36.03.52.16.13.11.17.25.19.35.02.1.03.23.01.35z"/></svg>
+                        </div>
+                        <div>
+                            <span class="block text-sm font-black">Telegram Join</span>
+                            <span class="text-[10px] text-white/30 uppercase font-bold">One-time reward</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="block text-amber-500 font-black text-sm">+50.00</span>
+                        <span class="text-[10px] text-white/20 font-bold uppercase">NXP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Space -->
+    <div class="h-10"></div>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/mining.js"></script>
+</body>
+</html>
