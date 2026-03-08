@@ -9,18 +9,18 @@
 <body class="bg-black text-white font-sans min-h-screen flex items-center justify-center px-6">
     <div class="max-w-md w-full space-y-8 bg-zinc-900 p-10 rounded-3xl border border-white/5">
         <div class="text-center">
-            <img src="https://storage.googleapis.com/generativeai-downloads/images/input_file_1.png" alt="Logo" class="w-16 h-16 mx-auto mb-6">
-            <h2 class="text-3xl font-black mb-2 tracking-tighter">Login</h2>
+            <img src="https://storage.googleapis.com/generativeai-downloads/images/input_file_0.png" alt="Logo" class="w-24 h-24 mx-auto mb-6 drop-shadow-[0_0_15px_rgba(245,158,11,0.3)]">
+            <h2 class="text-3xl font-black mb-2 tracking-tighter bg-gradient-to-b from-amber-200 to-amber-500 bg-clip-text text-transparent">Login</h2>
             <p class="text-white/40 text-sm">Welcome back to NexMine</p>
         </div>
-        <form class="space-y-6">
+        <form class="space-y-6" onsubmit="handleLogin(event)">
             <div>
                 <label class="block text-xs font-bold text-white/30 uppercase tracking-widest mb-2">Email</label>
-                <input type="email" class="w-full bg-black border border-white/10 p-4 rounded-xl focus:border-amber-500 outline-none transition-all" placeholder="Enter your email">
+                <input type="email" class="w-full bg-black border border-white/10 p-4 rounded-xl focus:border-amber-500 outline-none transition-all" placeholder="Enter your email" required>
             </div>
             <div>
                 <label class="block text-xs font-bold text-white/30 uppercase tracking-widest mb-2">Password</label>
-                <input type="password" class="w-full bg-black border border-white/10 p-4 rounded-xl focus:border-amber-500 outline-none transition-all" placeholder="Enter your password">
+                <input type="password" class="w-full bg-black border border-white/10 p-4 rounded-xl focus:border-amber-500 outline-none transition-all" placeholder="Enter your password" required>
             </div>
             <div class="flex justify-between items-center text-xs">
                 <a href="#" onclick="forgotPassword()" class="text-amber-500 font-bold hover:underline">Forgot Password?</a>
@@ -30,12 +30,6 @@
         </form>
     </div>
 
-    <script>
-        function forgotPassword() {
-            const message = "For password recovery please contact NexMine support on Telegram. Our support team will respond within 24 hours.";
-            alert(message);
-            window.location.href = "https://t.me/NexMineSupport"; // Example Telegram link
-        }
-    </script>
+    <script src="js/app.js"></script>
 </body>
 </html>
