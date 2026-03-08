@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks | NexMine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white font-sans min-h-screen flex flex-col">
+    <header class="p-6 flex justify-between items-center border-b border-white/5 bg-black/50 backdrop-blur-md sticky top-0 z-50">
+        <a href="dashboard.html" class="flex items-center gap-2">
+            <svg class="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            <span class="font-black text-xl bg-gradient-to-r from-amber-200 to-amber-500 bg-clip-text text-transparent">Tasks</span>
+        </a>
+    </header>
+
+    <main class="flex-1 p-6 max-w-lg mx-auto w-full space-y-8">
+        <div class="space-y-4">
+            <h3 class="text-xs font-black uppercase tracking-widest text-white/40">Social Tasks</h3>
+            <div class="space-y-3">
+                <!-- Task Items (Telegram, Instagram, YouTube, X, Facebook) -->
+                <div class="bg-zinc-900/50 p-4 rounded-2xl border border-white/5 flex justify-between items-center">
+                    <span class="text-sm font-black">Join Telegram</span>
+                    <span class="text-amber-500 font-black text-sm">+50.00 NXP</span>
+                </div>
+                <!-- Repeat for others -->
+            </div>
+        </div>
+
+        <div class="space-y-4">
+            <div class="flex justify-between items-center">
+                <h3 class="text-xs font-black uppercase tracking-widest text-white/40">Daily Tasks</h3>
+                <span class="text-[10px] font-bold text-green-500 bg-green-500/10 px-2 py-1 rounded-md italic">Coming Soon</span>
+            </div>
+            <div class="bg-zinc-900/30 p-10 rounded-[32px] border border-dashed border-white/10 text-center">
+                <p class="text-sm text-white/30 font-bold uppercase tracking-widest">Daily tasks will appear here soon!</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
