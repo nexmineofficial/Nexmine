@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | NexMine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        #balance { transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="bg-black text-white font-sans min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="p-6 flex justify-between items-center border-b border-white/5 bg-black/50 backdrop-blur-md sticky top-0 z-50">
+        <div class="flex items-center gap-2">
+            <svg class="w-10 h-10 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <span class="font-black tracking-tighter text-xl bg-gradient-to-r from-amber-200 to-amber-500 bg-clip-text text-transparent">NexMine</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="text-right hidden sm:block">
+                <p class="text-[10px] uppercase font-bold text-white/30 tracking-widest">Account</p>
+                <p id="user-display-name" class="text-xs text-white/70 font-black">Loading...</p>
+            </div>
+            <button onclick="logout()" class="text-[10px] font-bold uppercase tracking-widest bg-white/5 hover:bg-red-500/20 hover:text-red-500 border border-white/10 px-4 py-2 rounded-xl transition-all">
+                Logout
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-1 p-6 max-w-lg mx-auto w-full space-y-6 pb-24">
+        <!-- Balance Card -->
+        <div class="relative overflow-hidden bg-gradient-to-br from-amber-400 to-orange-600 p-8 rounded-[32px] text-black shadow-2xl shadow-amber-500/20">
+            <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/20 rounded-full blur-3xl"></div>
+            <p class="text-xs font-black uppercase tracking-widest opacity-70 mb-2">Total Balance</p>
+            <div class="flex items-baseline gap-2">
+                <h2 id="balance" class="text-5xl font-black tracking-tighter">0.00</h2>
+                <span class="font-bold text-sm">NXP</span>
+            </div>
+        </div>
+
+        <!-- Mining Card -->
+        <div class="bg-zinc-900 p-8 rounded-[32px] border border-white/5 space-y-6 relative overflow-hidden">
+            <div class="flex justify-between items-center relative z-10">
+                <div>
+                    <p class="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-1">Mining Speed</p>
+                    <div class="flex items-center gap-2">
+                        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <p class="text-lg font-black text-white">1.00 <span class="text-xs text-white/40">NXP/hr</span></p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <p class="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-1">Status</p>
+                    <p id="mining-status" class="text-lg font-black text-white/40 uppercase tracking-tighter italic">Inactive</p>
+                </div>
+            </div>
+            <div class="py-4 flex flex-col items-center relative z-10">
+                <div id="timer-display" class="text-5xl font-mono font-black mb-8 text-amber-500 hidden tracking-tighter">24:00:00</div>
+                <button id="start-mining-btn" onclick="startMining()" class="w-full py-6 bg-white text-black font-black rounded-[24px] tracking-[0.2em] hover:bg-amber-500 transition-all shadow-xl active:scale-95 uppercase text-sm">
+                    Start Mining Session
+                </button>
+            </div>
+        </div>
+
+        <!-- Referral Section -->
+        <div class="bg-zinc-900 p-6 rounded-[32px] border border-white/5 space-y-4">
+            <div class="flex justify-between items-center">
+                <h3 class="text-xs font-black uppercase tracking-widest text-white/40">Referral Program</h3>
+                <span class="text-[10px] font-bold text-green-500 bg-green-500/10 px-2 py-1 rounded-md">Earn 10%</span>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-white/5 p-4 rounded-2xl border border-white/5 text-center">
+                    <p class="text-[10px] font-bold text-white/30 uppercase mb-1">Referrals</p>
+                    <p id="ref-count" class="text-xl font-black">0</p>
+                </div>
+                <div class="bg-white/5 p-4 rounded-2xl border border-white/5 text-center">
+                    <p class="text-[10px] font-bold text-white/30 uppercase mb-1">Earnings</p>
+                    <p id="ref-earnings" class="text-xl font-black">0.00</p>
+                </div>
+            </div>
+            <div class="space-y-2">
+                <p class="text-[10px] font-bold text-white/30 uppercase px-1">Your Referral Link</p>
+                <div class="flex gap-2">
+                    <input id="ref-link" type="text" readonly value="Loading..." class="flex-1 bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-xs text-white/60 outline-none">
+                    <button onclick="copyRefLink()" class="bg-amber-500 text-black px-4 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-amber-400 transition-all">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Section Link -->
+        <div class="space-y-4">
+            <div class="flex justify-between items-center px-2">
+                <h3 class="text-xs font-black uppercase tracking-widest text-white/40">Task</h3>
+                <span class="text-[10px] font-bold text-amber-500 bg-amber-500/10 px-2 py-1 rounded-md">New</span>
+            </div>
+            <a href="tasks.html" class="group bg-zinc-900 p-6 rounded-[32px] border border-white/5 flex justify-between items-center transition-all hover:bg-zinc-800 active:scale-95">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-amber-500/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="block text-sm font-black">Open Tasks</span>
+                        <span class="text-[10px] text-white/30 uppercase font-bold">Complete tasks to earn NXP</span>
+                    </div>
+                </div>
+                <svg class="w-5 h-5 text-white/20 group-hover:text-white/50 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script src="js/mining.js"></script>
+</body>
+                  </html>
