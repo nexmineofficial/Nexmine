@@ -28,6 +28,7 @@ function handleSignup(event) {
     const mobile = document.getElementById('signup-mobile').value.trim();
     
     // Check if user already exists (Simulated)
+    // In a real app, we'd check a database. Here we check localStorage.
     const savedUsers = JSON.parse(localStorage.getItem('nexmine_users_list') || '[]');
     
     if (savedUsers.some(u => u.username === username)) {
@@ -41,13 +42,26 @@ function handleSignup(event) {
 
     console.log("Signing up...");
     
-    // Save info
+    // Save info and initial balance
     localStorage.setItem('nexmine_user_email', email);
     localStorage.setItem('nexmine_username', username);
     localStorage.setItem('nexmine_mobile', mobile);
     
-    // Initial balance
-    localStorage.setItem('nexmine_balance', '0.00');
+    // Initial balance: 0.00
+    let initialBalance = 0.00;
+    
+    // Check for referral bonus (Simulated)
+    const urlParams = new URLSearchParams(window.location.search);
+    const refCode = urlParams.get('ref');
+    if (refCode) {
+        // If referred, maybe the user gets a bonus? 
+        // User said: "direct referrals se 100 nxp milega complete signup par"
+        // This usually means the REFERRER gets 100 NXP. 
+        // Since we are simulating, we'll just log it.
+        console.log(`User referred by: ${refCode}. Referrer would get 100 NXP.`);
+    }
+
+    localStorage.setItem('nexmine_balance', initialBalance.toFixed(2));
     
     // Add to users list for unique check simulation
     savedUsers.push({ username, email, mobile });
@@ -66,11 +80,13 @@ function handleSignup(event) {
 
 // Logout
 function logout() {
+    // Clear session if needed
     window.location.href = "login.html";
 }
 
-// Forgot Password
+// Forgot Password (Telegram Redirect)
 function forgotPassword() {
-    alert("For password recovery please contact NexMine support on Telegram.");
+    const message = "For password recovery please contact NexMine support on Telegram. Our support team will respond within 24 hours.";
+    alert(message);
     window.location.href = "https://t.me/NexMineSupport";
-    }
+}

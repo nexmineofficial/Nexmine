@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexMine | Social Mining Platform</title>
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-black text-white font-sans">
@@ -29,45 +30,114 @@
             <img src="https://storage.googleapis.com/generativeai-downloads/images/input_file_1.png" alt="Banner" class="w-full h-full object-cover opacity-40 scale-105 blur-[1px]">
             <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/60 to-black"></div>
         </div>
-        <div class="max-w-4xl">
-            <img src="https://storage.googleapis.com/generativeai-downloads/images/input_file_0.png" alt="Logo" class="w-40 h-40 mx-auto mb-8 drop-shadow-[0_0_30px_rgba(245,158,11,0.5)]">
-            <h1 class="text-6xl md:text-8xl font-black mb-6 leading-tight tracking-tighter uppercase">NexMine Social Mining</h1>
+        <div class="max-w-4xl animate-fade-in">
+            <img src="https://storage.googleapis.com/generativeai-downloads/images/input_file_0.png" alt="Logo Large" class="w-40 h-40 mx-auto mb-8 drop-shadow-[0_0_30px_rgba(245,158,11,0.5)]">
+            <h1 class="text-6xl md:text-8xl font-black mb-6 leading-tight tracking-tighter">
+                <span class="bg-gradient-to-b from-amber-200 to-amber-600 bg-clip-text text-transparent">NexMine</span><br/>Social Mining
+            </h1>
             <p class="text-xl md:text-2xl text-white/70 mb-4 font-bold">Mine NXP point, Earn NexMine Token later</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+            <p class="text-lg text-white/40 mb-10">Join the next generation of social mining and build your digital future.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="signup.html" class="px-10 py-4 bg-amber-500 text-black font-black rounded-2xl text-lg uppercase tracking-widest hover:bg-amber-400 transition-all">Start Mining</a>
+                <a href="#" class="px-10 py-4 bg-white/5 border border-white/10 rounded-2xl text-lg font-bold hover:bg-white/10 transition-all">Join Community</a>
             </div>
         </div>
     </header>
+
+    <!-- How it Works -->
+    <section id="how-it-works" class="py-24 bg-zinc-950 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-16">How it Works</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-zinc-900 p-10 rounded-3xl border border-white/5">
+                    <div class="text-amber-500 text-5xl font-black mb-6">01</div>
+                    <h3 class="text-2xl font-bold mb-4">Create Account</h3>
+                    <p class="text-white/50">Sign up with email and mobile to get 100 NXP bonus.</p>
+                </div>
+                <div class="bg-zinc-900 p-10 rounded-3xl border border-white/5">
+                    <div class="text-amber-500 text-5xl font-black mb-6">02</div>
+                    <h3 class="text-2xl font-bold mb-4">Start Daily Mining</h3>
+                    <p class="text-white/50">Activate your session every 24 hours to earn rewards.</p>
+                </div>
+                <div class="bg-zinc-900 p-10 rounded-3xl border border-white/5">
+                    <div class="text-amber-500 text-5xl font-black mb-6">03</div>
+                    <h3 class="text-2xl font-bold mb-4">Earn Rewards</h3>
+                    <p class="text-white/50">Watch your balance grow and build your mining team.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mining Reward Table -->
+    <section id="rewards" class="py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold mb-12 text-center">Mining Reward Table</h2>
+            <div class="bg-zinc-900 rounded-3xl overflow-hidden border border-white/10">
+                <div class="p-6 border-b border-white/5 flex justify-between font-bold text-white/50">
+                    <span>User Count</span>
+                    <span>Reward Rate</span>
+                </div>
+                <div class="divide-y divide-white/5">
+                    <div class="p-6 flex justify-between"><span>0 – 5,000 users</span><span class="text-amber-500 font-bold">1 NXP / hr</span></div>
+                    <div class="p-6 flex justify-between"><span>5,000 – 10,000 users</span><span class="text-amber-500 font-bold">0.5 NXP / hr</span></div>
+                    <div class="p-6 flex justify-between"><span>10,000 – 20,000 users</span><span class="text-amber-500 font-bold">0.3 NXP / hr</span></div>
+                    <div class="p-6 flex justify-between"><span>20,000 – 50,000 users</span><span class="text-amber-500 font-bold">0.2 NXP / hr</span></div>
+                    <div class="p-6 flex justify-between"><span>50,000 – 100,000 users</span><span class="text-amber-500 font-bold">0.1 NXP / hr</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Roadmap Section -->
     <section id="roadmap" class="py-24 bg-black px-6">
         <div class="max-w-7xl mx-auto">
             <h2 class="text-4xl font-bold mb-16 text-center">Project Roadmap</h2>
             <div class="grid md:grid-cols-4 gap-6">
+                <!-- Q1 -->
                 <div class="bg-zinc-900/50 p-8 rounded-3xl border border-white/5 relative overflow-hidden">
                     <div class="absolute -right-4 -top-4 text-5xl font-black text-white/5 italic">Q1</div>
                     <h4 class="text-amber-500 font-black text-lg uppercase tracking-widest mb-1">Project Launch</h4>
                     <p class="text-[10px] text-white/40 font-bold uppercase mb-4">Build Community & Beta Launch</p>
+                    <ul class="text-sm text-white/50 space-y-3">
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-amber-500 rounded-full"></div> Platform Beta</li>
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-amber-500 rounded-full"></div> Community Build</li>
+                    </ul>
                 </div>
+                <!-- Q2 -->
                 <div class="bg-zinc-900/50 p-8 rounded-3xl border border-white/5 relative overflow-hidden">
                     <div class="absolute -right-4 -top-4 text-5xl font-black text-white/5 italic">Q2</div>
                     <h4 class="text-white font-black text-lg uppercase tracking-widest mb-1">App Features</h4>
                     <p class="text-[10px] text-white/40 font-bold uppercase mb-4">Ecosystem & Wallet Integration</p>
+                    <ul class="text-sm text-white/40 space-y-3">
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-white/20 rounded-full"></div> Ecosystem Dev</li>
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-white/20 rounded-full"></div> Wallet Integration</li>
+                    </ul>
                 </div>
+                <!-- Q3 -->
                 <div class="bg-zinc-900/50 p-8 rounded-3xl border border-white/5 relative overflow-hidden">
                     <div class="absolute -right-4 -top-4 text-5xl font-black text-white/5 italic">Q3</div>
                     <h4 class="text-white font-black text-lg uppercase tracking-widest mb-1">Token Development</h4>
                     <p class="text-[10px] text-white/40 font-bold uppercase mb-4">Smart Contract & Audit</p>
+                    <ul class="text-sm text-white/40 space-y-3">
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-white/20 rounded-full"></div> Smart Contract</li>
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-white/20 rounded-full"></div> Security Audit</li>
+                    </ul>
                 </div>
+                <!-- Q4 -->
                 <div class="bg-zinc-900/50 p-8 rounded-3xl border border-white/5 relative overflow-hidden">
                     <div class="absolute -right-4 -top-4 text-5xl font-black text-white/5 italic">Q4</div>
                     <h4 class="text-white font-black text-lg uppercase tracking-widest mb-1">Token Launch</h4>
                     <p class="text-[10px] text-white/40 font-bold uppercase mb-4">Expansion & Global Listing</p>
+                    <ul class="text-sm text-white/40 space-y-3">
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-white/20 rounded-full"></div> Global Listing</li>
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-white/20 rounded-full"></div> Expansion</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="py-20 border-t border-white/5 text-center">
         <p class="text-white/40">© 2026 NexMine Social Mining. All rights reserved.</p>
     </footer>
