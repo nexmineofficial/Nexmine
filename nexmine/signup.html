@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | NexMine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white font-sans min-h-screen flex items-center justify-center px-6 py-12">
+    <div class="max-w-md w-full space-y-8 bg-zinc-900 p-10 rounded-3xl border border-white/5">
+        <div class="text-center">
+            <h2 class="text-3xl font-black mb-2 tracking-tighter bg-gradient-to-b from-amber-200 to-amber-500 bg-clip-text text-transparent">Sign Up</h2>
+        </div>
+        <form class="space-y-6" onsubmit="handleSignup(event)">
+            <div>
+                <label class="block text-xs font-bold text-white/30 uppercase mb-2">Username</label>
+                <input type="text" id="signup-username" class="w-full bg-black border border-white/10 p-4 rounded-xl outline-none" placeholder="Unique username" required>
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-white/30 uppercase mb-2">Email</label>
+                <input type="email" id="signup-email" class="w-full bg-black border border-white/10 p-4 rounded-xl outline-none" placeholder="Email address" required>
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-white/30 uppercase mb-2">Password</label>
+                <input type="password" class="w-full bg-black border border-white/10 p-4 rounded-xl outline-none" placeholder="Password" required>
+            </div>
+            <button type="submit" class="w-full py-4 bg-amber-500 text-black font-black rounded-xl uppercase">Sign Up</button>
+        </form>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+</html>
