@@ -81,6 +81,15 @@ function addRewardToWallet(amount) {
     currentBalance += amount;
     localStorage.setItem('nexmine_balance', currentBalance.toFixed(8));
     
+    // Simulate referral income for the person who referred this user
+    // In a real app, this would happen on the server.
+    let refEarnings = parseFloat(localStorage.getItem('nexmine_ref_earnings') || '0');
+    // We simulate that this user is a "Level 1" referral for someone else
+    // So 10% of their mining goes to their referrer.
+    refEarnings += (amount * 0.10); 
+    localStorage.setItem('nexmine_ref_earnings', refEarnings.toFixed(8));
+    updateReferralUI();
+
     balanceEl.innerText = currentBalance.toLocaleString(undefined, { 
         minimumFractionDigits: 2,
         maximumFractionDigits: 2 
@@ -135,10 +144,23 @@ function updateReferralUI() {
     if (!localStorage.getItem('nexmine_ref_earnings')) {
         localStorage.setItem('nexmine_ref_earnings', '150.00');
     }
+    
+    // Simulated counts for demo
+    if (!localStorage.getItem('nexmine_ref_counts')) {
+        localStorage.setItem('nexmine_ref_counts', JSON.stringify({
+            l1: 12,
+            l2: 45,
+            l3: 89,
+            l4: 156,
+            l5: 342
+        }));
+    }
 
     const earnings = parseFloat(localStorage.getItem('nexmine_ref_earnings') || '0.00');
     const refEarningsEl = document.getElementById('ref-earnings');
     if (refEarningsEl) refEarningsEl.innerText = earnings.toFixed(2);
+
+    const counts = JSON.parse(localStorage.getItem('nexmine_ref_counts') || '{}');
 
     // Level breakdown (Simulated for now)
     const l1 = earnings * 0.6; // 60% from L1
@@ -147,11 +169,19 @@ function updateReferralUI() {
     const l4 = earnings * 0.07; // 7% from L4
     const l5 = earnings * 0.03; // 3% from L5
 
+    // Update Earnings
     if (document.getElementById('ref-l1')) document.getElementById('ref-l1').innerText = l1.toFixed(2) + " NXP";
     if (document.getElementById('ref-l2')) document.getElementById('ref-l2').innerText = l2.toFixed(2) + " NXP";
     if (document.getElementById('ref-l3')) document.getElementById('ref-l3').innerText = l3.toFixed(2) + " NXP";
     if (document.getElementById('ref-l4')) document.getElementById('ref-l4').innerText = l4.toFixed(2) + " NXP";
     if (document.getElementById('ref-l5')) document.getElementById('ref-l5').innerText = l5.toFixed(2) + " NXP";
+
+    // Update Counts
+    if (document.getElementById('ref-l1-count')) document.getElementById('ref-l1-count').innerText = (counts.l1 || 0) + " Users";
+    if (document.getElementById('ref-l2-count')) document.getElementById('ref-l2-count').innerText = (counts.l2 || 0) + " Users";
+    if (document.getElementById('ref-l3-count')) document.getElementById('ref-l3-count').innerText = (counts.l3 || 0) + " Users";
+    if (document.getElementById('ref-l4-count')) document.getElementById('ref-l4-count').innerText = (counts.l4 || 0) + " Users";
+    if (document.getElementById('ref-l5-count')) document.getElementById('ref-l5-count').innerText = (counts.l5 || 0) + " Users";
 }
 
 // Initialize on Load

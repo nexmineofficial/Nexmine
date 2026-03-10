@@ -47,18 +47,17 @@ function handleSignup(event) {
     localStorage.setItem('nexmine_username', username);
     localStorage.setItem('nexmine_mobile', mobile);
     
-    // Initial balance: 0.00
-    let initialBalance = 0.00;
+    // Initial balance: 100.00 (Signup bonus)
+    let initialBalance = 100.00;
     
     // Check for referral bonus (Simulated)
     const urlParams = new URLSearchParams(window.location.search);
     const refCode = urlParams.get('ref');
     if (refCode) {
-        // If referred, maybe the user gets a bonus? 
-        // User said: "direct referrals se 100 nxp milega complete signup par"
-        // This usually means the REFERRER gets 100 NXP. 
-        // Since we are simulating, we'll just log it.
-        console.log(`User referred by: ${refCode}. Referrer would get 100 NXP.`);
+        // Referrer gets 100 NXP bonus
+        console.log(`User referred by: ${refCode}. Referrer awarded 100 NXP bonus.`);
+        // In a real app, we'd update the referrer's balance in the DB.
+        // Here we'll simulate by adding it to a "pending bonuses" list or similar if we had a full multi-user simulation.
     }
 
     localStorage.setItem('nexmine_balance', initialBalance.toFixed(2));
@@ -76,6 +75,31 @@ function handleSignup(event) {
         const directory = currentPath.substring(0, currentPath.lastIndexOf('/'));
         window.location.href = directory + "/dashboard.html";
     }, 1500);
+}
+
+// Update Username
+function updateUsername() {
+    const newUsername = prompt("Enter new username:", localStorage.getItem('nexmine_username'));
+    if (newUsername && newUsername.trim() !== "") {
+        const trimmed = newUsername.trim();
+        const savedUsers = JSON.parse(localStorage.getItem('nexmine_users_list') || '[]');
+        
+        if (savedUsers.some(u => u.username === trimmed && u.username !== localStorage.getItem('nexmine_username'))) {
+            alert("This username is already taken!");
+            return;
+        }
+
+        // Update in list
+        const oldUsername = localStorage.getItem('nexmine_username');
+        const userIndex = savedUsers.findIndex(u => u.username === oldUsername);
+        if (userIndex !== -1) {
+            savedUsers[userIndex].username = trimmed;
+            localStorage.setItem('nexmine_users_list', JSON.stringify(savedUsers));
+        }
+
+        localStorage.setItem('nexmine_username', trimmed);
+        location.reload();
+    }
 }
 
 // Logout
