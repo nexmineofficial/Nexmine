@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referral Details | NexMine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .level-card { transition: all 0.3s ease; }
+        .level-card.active { border-color: #f59e0b; background: rgba(245, 158, 11, 0.05); }
+        .modal { transition: opacity 0.3s ease; }
+    </style>
+</head>
+<body class="bg-black text-white font-sans min-h-screen flex flex-col">
+    <header class="p-6 flex items-center gap-4 border-b border-white/5 bg-black/50 backdrop-blur-md sticky top-0 z-50">
+        <a href="dashboard.html" class="p-2 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-all">
+            <svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+        </a>
+        <h1 class="text-xl font-black tracking-tighter uppercase">Referral Network</h1>
+    </header>
+
+    <main class="flex-1 p-6 max-w-lg mx-auto w-full space-y-6 pb-24">
+        <div class="bg-gradient-to-br from-amber-500 to-orange-600 p-6 rounded-[32px] text-black shadow-2xl">
+            <p class="text-[10px] font-black uppercase tracking-widest opacity-70 mb-1">Total Network Earnings</p>
+            <div class="flex items-baseline gap-2">
+                <h2 id="total-ref-earnings" class="text-4xl font-black tracking-tighter">0.00</h2>
+                <span class="font-bold text-sm">NXP</span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-5 gap-2">
+            <button onclick="showLevel(1)" id="btn-l1" class="level-card p-3 rounded-2xl border border-white/5 text-center active">
+                <p class="text-[10px] font-bold text-white/40 uppercase">L1</p>
+                <p id="count-l1" class="text-xs font-black">0</p>
+            </button>
+            <button onclick="showLevel(2)" id="btn-l2" class="level-card p-3 rounded-2xl border border-white/5 text-center">
+                <p class="text-[10px] font-bold text-white/40 uppercase">L2</p>
+                <p id="count-l2" class="text-xs font-black">0</p>
+            </button>
+            <button onclick="showLevel(3)" id="btn-l3" class="level-card p-3 rounded-2xl border border-white/5 text-center">
+                <p class="text-[10px] font-bold text-white/40 uppercase">L3</p>
+                <p id="count-l3" class="text-xs font-black">0</p>
+            </button>
+            <button onclick="showLevel(4)" id="btn-l4" class="level-card p-3 rounded-2xl border border-white/5 text-center">
+                <p class="text-[10px] font-bold text-white/40 uppercase">L4</p>
+                <p id="count-l4" class="text-xs font-black">0</p>
+            </button>
+            <button onclick="showLevel(5)" id="btn-l5" class="level-card p-3 rounded-2xl border border-white/5 text-center">
+                <p class="text-[10px] font-bold text-white/40 uppercase">L5</p>
+                <p id="count-l5" class="text-xs font-black">0</p>
+            </button>
+        </div>
+
+        <div id="level-details-container" class="space-y-4">
+            <div class="flex justify-between items-center px-2">
+                <h3 id="current-level-title" class="text-xs font-black uppercase tracking-widest text-white/40">Level 1 Members</h3>
+                <p id="level-earnings" class="text-xs font-black text-amber-500">0.00 NXP</p>
+            </div>
+            
+            <div class="bg-zinc-900 rounded-3xl border border-white/5 overflow-hidden">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-white/5 border-b border-white/5">
+                            <th class="p-4 text-[10px] font-black uppercase text-white/30 tracking-widest">Username</th>
+                            <th class="p-4 text-[10px] font-black uppercase text-white/30 tracking-widest text-right">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="members-list-body"></tbody>
+                </table>
+                <div id="no-members-msg" class="p-8 text-center text-white/20 text-xs italic hidden">
+                    No members found in this level.
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="user-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[100] flex items-center justify-center p-6 opacity-0 pointer-events-none modal">
+        <div class="bg-zinc-900 w-full max-w-sm rounded-[40px] border border-white/10 p-8 space-y-6 shadow-2xl">
+            <div class="flex justify-between items-start">
+                <div class="w-16 h-16 bg-amber-500/10 rounded-2xl flex items-center justify-center text-amber-500 text-2xl font-black" id="modal-avatar">U</div>
+                <button onclick="closeModal()" class="p-2 bg-white/5 rounded-xl text-white/40 hover:text-white transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l18 12"></path></svg>
+                </button>
+            </div>
+            <div>
+                <h2 id="modal-username" class="text-2xl font-black tracking-tighter">Username</h2>
+                <p id="modal-signup-date" class="text-xs text-white/40 font-bold uppercase tracking-widest mt-1">Joined: 12 Mar 2026</p>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white/5 p-4 rounded-2xl border border-white/5">
+                    <p class="text-[8px] font-black uppercase text-white/30 tracking-widest mb-1">Total Mined</p>
+                    <p id="modal-mined" class="text-sm font-black text-white">0.00 NXP</p>
+                </div>
+                <div class="bg-white/5 p-4 rounded-2xl border border-white/5">
+                    <p class="text-[8px] font-black uppercase text-white/30 tracking-widest mb-1">Your Commission</p>
+                    <p id="modal-commission" class="text-sm font-black text-amber-500">0.00 NXP</p>
+                </div>
+            </div>
+            <div class="pt-4">
+                <button onclick="closeModal()" class="w-full py-4 bg-white text-black font-black rounded-2xl uppercase text-xs tracking-widest hover:bg-amber-500 transition-all">Close Details</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentLevel = 1;
+        let levelsData = { l1: [], l2: [], l3: [], l4: [], l5: [] };
+
+        function getReferralLevels() {
+            const username = localStorage.getItem('nexmine_username');
+            const allUsers = JSON.parse(localStorage.getItem('nexmine_users_list') || '[]');
+            const levels = { l1: [], l2: [], l3: [], l4: [], l5: [] };
+
+            levels.l1 = allUsers.filter(u => u.referrer === username);
+            levels.l1.forEach(u1 => {
+                const l2 = allUsers.filter(u => u.referrer === u1.username);
+                levels.l2.push(...l2);
+            });
+            levels.l2.forEach(u2 => {
+                const l3 = allUsers.filter(u => u.referrer === u2.username);
+                levels.l3.push(...l3);
+            });
+            levels.l3.forEach(u3 => {
+                const l4 = allUsers.filter(u => u.referrer === u3.username);
+                levels.l4.push(...l4);
+            });
+            levels.l4.forEach(u4 => {
+                const l5 = allUsers.filter(u => u.referrer === u4.username);
+                levels.l5.push(...l5);
+            });
+            return levels;
+        }
+
+        function showLevel(lvl) {
+            console.log("showLevel called for level:", lvl);
+            currentLevel = lvl;
+            for(let i=1; i<=5; i++) {
+                const btn = document.getElementById(`btn-l${i}`);
+                if (btn) {
+                    if (i === lvl) btn.classList.add('active');
+                    else btn.classList.remove('active');
+                }
+            }
+            const title = document.getElementById('current-level-title');
+            if (title) title.innerText = `Level ${lvl} Members`;
+
+            const tbody = document.getElementById('members-list-body');
+            const noMembersMsg = document.getElementById('no-members-msg');
+            const members = levelsData[`l${lvl}`];
+            
+            const miningEarnings = parseFloat(localStorage.getItem('nexmine_ref_earnings') || '0');
+            const totalPct = 0.21;
+            const pcts = { l1: 0.10, l2: 0.05, l3: 0.03, l4: 0.02, l5: 0.01 };
+            const signupBonuses = { l1: 100, l2: 50, l3: 30, l4: 20, l5: 10 };
+            
+            const levelMiningEarning = miningEarnings * (pcts[`l${lvl}`] / totalPct);
+            const levelSignupEarning = members.length * signupBonuses[`l${lvl}`];
+            const totalLevelEarning = levelMiningEarning + levelSignupEarning;
+
+            document.getElementById('level-earnings').innerText = totalLevelEarning.toFixed(2) + " NXP";
+
+            if (members.length === 0) {
+                tbody.innerHTML = "";
+                noMembersMsg.classList.remove('hidden');
+            } else {
+                noMembersMsg.classList.add('hidden');
+                tbody.innerHTML = members.map(m => `
+                    <tr class="border-b border-white/5 hover:bg-white/[0.02] transition-all">
+                        <td class="p-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-amber-500/10 rounded-lg flex items-center justify-center text-amber-500 font-black text-xs">
+                                    ${m.username.charAt(0).toUpperCase()}
+                                </div>
+                                <span class="text-sm font-bold">${m.username}</span>
+                            </div>
+                        </td>
+                        <td class="p-4 text-right">
+                            <button onclick="openUserDetail('${m.username}')" class="text-[10px] font-black uppercase text-amber-500 bg-amber-500/10 px-3 py-1 rounded-full hover:bg-amber-500 hover:text-black transition-all">Details</button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+        }
+
+        function openUserDetail(username) {
+            const allUsers = JSON.parse(localStorage.getItem('nexmine_users_list') || '[]');
+            const user = allUsers.find(u => u.username === username);
+            if (!user) return;
+
+            const modal = document.getElementById('user-modal');
+            document.getElementById('modal-username').innerText = user.username;
+            document.getElementById('modal-avatar').innerText = user.username.charAt(0).toUpperCase();
+            document.getElementById('modal-signup-date').innerText = `Joined: ${new Date(user.signupTime || Date.now()).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}`;
+            
+            const signupBonuses = { l1: 100, l2: 50, l3: 30, l4: 20, l5: 10 };
+            const daysJoined = Math.max(1, Math.floor((Date.now() - (user.signupTime || Date.now())) / (1000 * 60 * 60 * 24)));
+            const simulatedMined = (daysJoined * 24 * 0.8).toFixed(2);
+            
+            const commissionFromMined = (parseFloat(simulatedMined) * ( { l1: 0.10, l2: 0.05, l3: 0.03, l4: 0.02, l5: 0.01 }[ `l${currentLevel}` ] )).toFixed(2);
+            const totalCommission = (parseFloat(commissionFromMined) + signupBonuses[`l${currentLevel}`]).toFixed(2);
+
+            document.getElementById('modal-mined').innerText = simulatedMined + " NXP";
+            document.getElementById('modal-commission').innerText = totalCommission + " NXP";
+
+            modal.classList.remove('pointer-events-none');
+            modal.classList.add('opacity-100');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('user-modal');
+            modal.classList.add('pointer-events-none');
+            modal.classList.remove('opacity-100');
+        }
+
+        window.addEventListener('load', () => {
+            try {
+                levelsData = getReferralLevels();
+                for(let i=1; i<=5; i++) {
+                    const el = document.getElementById(`count-l${i}`);
+                    if (el) el.innerText = levelsData[`l${i}`].length;
+                }
+                const miningEarnings = parseFloat(localStorage.getItem('nexmine_ref_earnings') || '0');
+                const totalSignupBonus = (levelsData.l1.length * 100) + (levelsData.l2.length * 50) + (levelsData.l3.length * 30) + (levelsData.l4.length * 20) + (levelsData.l5.length * 10);
+                const earningsEl = document.getElementById('total-ref-earnings');
+                if (earningsEl) earningsEl.innerText = (miningEarnings + totalSignupBonus).toFixed(2);
+                showLevel(1);
+            } catch (e) {
+                console.error("Error initializing referrals page:", e);
+            }
+        });
+    </script>
+</body>
+      </html>
